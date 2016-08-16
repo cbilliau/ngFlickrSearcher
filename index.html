@@ -21,16 +21,21 @@
                         <button type="submit" class="btn btn-primary" ng-disabled="searchForm.$invalid">Submit</button>
                     </div>
                 </form>
-                <div class="tagArea">
-                    <p ng-show="vm.searchForm.$submitted">
-                        Searching for photos tagged <em>
-                        {{ vm.searchWord }}</em>.
+                <div class="resultsArea">
+                    <p ng-show="vm.searchForm.$submitted && !vm.results">
+                        Searching for photos tagged
+                        <em>
+                            {{ vm.searchWord }}</em>.
                     </p>
-                    <!-- <p>We found
-                        {{ resultNum }}
+                    <p ng-if="vm.results">We found
+                        {{ vm.results.length }}
                         results for
-                        {{ searchWord }}.</p>
-                    <p>No images found.</p> -->
+                        <em>
+                            {{ vm.searchWord }}</em>.</p>
+                    <!-- <p>No images found.</p> -->
+                    <div ng-repeat="result in vm.results">
+                        <iframe ng-src="{{ vm.trustSrc(vm.embedUrl + result.id.videoId) }}" frameborder="0" width="480" height="390"></iframe>
+                    </div>
                 </div>
                 <div class="results"></div>
             </div>
