@@ -1,26 +1,26 @@
-angular.module('mainApp', ['ngMessages'])
+angular.module('mainApp', ['ngMessages', 'ngAnimate'])
     .config(function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
     })
     .controller('RootCtrl', function($http, $sce) {
         var vm = this;
         vm.searchWord = '';
-				vm.formInvalid = false;
+        vm.formInvalid = false;
 
-				vm.trustSrc = function(src) {
-				  return $sce.trustAsResourceUrl(src);
-				};
+        vm.trustSrc = function(src) {
+            return $sce.trustAsResourceUrl(src);
+        };
 
         vm.submitForm = function() {
             if (vm.searchForm.$valid) {
                 vm.searchWord = vm.searchText;
                 vm.searchText = null;
-								vm.clearResultsArea();
+                vm.clearResultsArea();
                 vm.searchFlickr(vm.searchWord);
-								vm.formInvalid = false;
+                vm.formInvalid = false;
             } else {
-								vm.formInvalid = true;
-						};
+                vm.formInvalid = true;
+            };
         };
 
         vm.searchFlickr = function(keyword) {
@@ -46,9 +46,9 @@ angular.module('mainApp', ['ngMessages'])
                     });
         };
 
-				vm.clearResultsArea = function() {
-					var el = document.querySelectorAll('img.image');
-					el.innerHTML = '';
-				};
+        vm.clearResultsArea = function() {
+            var el = document.querySelectorAll('img.image');
+            el.innerHTML = '';
+        };
 
     });
