@@ -5,6 +5,7 @@ angular.module('mainApp', ['ngMessages'])
     .controller('RootCtrl', function($http, $sce) {
         var vm = this;
         vm.searchWord = '';
+				vm.formInvalid = false;
 
 				vm.trustSrc = function(src) {
 				  return $sce.trustAsResourceUrl(src);
@@ -14,8 +15,12 @@ angular.module('mainApp', ['ngMessages'])
             if (vm.searchForm.$valid) {
                 vm.searchWord = vm.searchText;
                 vm.searchText = null;
+								vm.clearResultsArea();
                 vm.searchFlickr(vm.searchWord);
-            } else {};
+								vm.formInvalid = false;
+            } else {
+								vm.formInvalid = true;
+						};
         };
 
         vm.searchFlickr = function(keyword) {
@@ -35,11 +40,15 @@ angular.module('mainApp', ['ngMessages'])
                 })
                 .then(function(response) {
                         vm.results = response.data.photos.photo;
-                        console.log(response.data);
                     },
                     function(response) {
                         alert('error');
                     });
         };
+
+				vm.clearResultsArea = function() {
+					var el = document.querySelectorAll('img.image');
+					el.innerHTML = '';
+				};
 
     });
