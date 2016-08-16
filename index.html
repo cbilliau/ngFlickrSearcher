@@ -3,13 +3,13 @@
     <head>
         <link rel="stylesheet" type="text/css" href="styles/styles.css">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-        <script data-require="angular.js@1.3.10" data-semver="1.3.10" src="https://code.angularjs.org/1.3.10/angular.js"></script>
+        <script data-require="angular.js@1.3.11" data-semver="1.3.11" src="https://code.angularjs.org/1.3.11/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-messages.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
         <meta charset="UTF-8">
         <title>FlickrSearcher</title>
     </head>
-    <body ng-controller="mainController">
+    <body ng-controller="RootCtrl as rootVm">
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="header">
@@ -17,15 +17,18 @@
                 </div>
                 <form name="searchForm" ng-submit="submitForm()" novalidate>
                     <div class="form-group">
-                        <input type="text" name="search" class="form-control" placeholder="Enter a tag search" ng-model="search" required/>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <input type="text" name="search" class="form-control" placeholder="Enter a tag search" ng-model="searchText" required/>
+                        <button type="submit" class="btn btn-primary" ng-disabled="searchForm.$invalid">Submit</button>
                     </div>
                 </form>
                 <div class="tagArea">
+										<p>
+											Searching for photos tagged with {{ searchText }}.
+										</p>
                     <p>We found
                         {{ }}
                         results for
-                        {{ search }}.</p>
+                        {{ searchText }}.</p>
                     <p>No images found.</p>
                 </div>
                 <div class="results"></div>
