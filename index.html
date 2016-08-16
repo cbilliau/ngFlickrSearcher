@@ -9,22 +9,22 @@
         <meta charset="UTF-8">
         <title>FlickrSearcher</title>
     </head>
-    <body ng-controller="RootCtrl as rootVm">
+    <body ng-controller="RootCtrl as vm">
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="header">
                     <h1>Flickr Searcher</h1>
                 </div>
-                <form name="searchForm" ng-submit="submitForm()" novalidate>
+                <form name="vm.searchForm" ng-submit="vm.submitForm()" novalidate>
                     <div class="form-group">
-                        <input type="text" name="search" class="form-control" placeholder="Enter a tag search" ng-model="searchText" required/>
+                        <input type="text" name="search" class="form-control" placeholder="Enter a tag search" ng-model="vm.searchText" required/>
                         <button type="submit" class="btn btn-primary" ng-disabled="searchForm.$invalid">Submit</button>
                     </div>
                 </form>
                 <div class="tagArea">
-                    <p ng-show="searchForm.$submitted">
+                    <p ng-show="vm.searchForm.$submitted">
                         Searching for photos tagged <em>
-                        {{ searchWord }}</em>.
+                        {{ vm.searchWord }}</em>.
                     </p>
                     <!-- <p>We found
                         {{ resultNum }}
