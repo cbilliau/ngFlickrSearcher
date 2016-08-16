@@ -22,15 +22,15 @@
                     </div>
                 </form>
                 <div class="tagArea">
-                    <p>
-                        Searching for photos tagged with
-                        {{ searchWord }}.
+                    <p ng-show="searchForm.$submitted">
+                        Searching for photos tagged <em>
+                        {{ searchWord }}</em>.
                     </p>
-                    <p>We found
-                        {{ }}
+                    <!-- <p>We found
+                        {{ resultNum }}
                         results for
                         {{ searchWord }}.</p>
-                    <p>No images found.</p>
+                    <p>No images found.</p> -->
                 </div>
                 <div class="results"></div>
             </div>
