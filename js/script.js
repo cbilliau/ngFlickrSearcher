@@ -6,6 +6,10 @@ angular.module('mainApp', ['ngMessages'])
         var vm = this;
         vm.searchWord = '';
 
+				vm.trustSrc = function(src) {
+				  return $sce.trustAsResourceUrl(src);
+				};
+
         vm.submitForm = function() {
             if (vm.searchForm.$valid) {
                 vm.searchWord = vm.searchText;
@@ -31,7 +35,7 @@ angular.module('mainApp', ['ngMessages'])
                 })
                 .then(function(response) {
                         vm.results = response.data.photos.photo;
-                        console.log(vm.results.length);
+                        console.log(response.data);
                     },
                     function(response) {
                         alert('error');

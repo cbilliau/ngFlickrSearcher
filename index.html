@@ -12,16 +12,19 @@
     <body ng-controller="RootCtrl as vm">
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2">
+
                 <div class="header">
                     <h1>Flickr Searcher</h1>
                 </div>
+
                 <form name="vm.searchForm" ng-submit="vm.submitForm()" novalidate>
                     <div class="form-group">
                         <input type="text" name="search" class="form-control" placeholder="Enter a tag search" ng-model="vm.searchText" required/>
                         <button type="submit" class="btn btn-primary" ng-disabled="searchForm.$invalid">Submit</button>
                     </div>
                 </form>
-                <div class="resultsArea">
+
+                <div class="msgArea">
                     <p ng-show="vm.searchForm.$submitted && !vm.results">
                         Searching for photos tagged
                         <em>
@@ -33,13 +36,14 @@
                         <em>
                             {{ vm.searchWord }}</em>.</p>
                     <!-- <p>No images found.</p> -->
-                    <div ng-repeat="result in vm.results">
-                        <iframe ng-src="{{ vm.trustSrc(vm.embedUrl + result.id.videoId) }}" frameborder="0" width="480" height="390"></iframe>
-                    </div>
                 </div>
-                <div class="results"></div>
-            </div>
 
+                <div class="resultsArea" ng-repeat="result in vm.results">
+                    <img ng-src="{{
+                    	vm.trustSrc('https://farm' + result.farm+ '.staticflickr.com/' + result.server + '/' + result.id + '_' + result.secret + '.jpg')}}" frameborder="" width="auto" height="auto"></img>
+                </div>
+
+            </div>
         </div>
     </body>
 </html>
