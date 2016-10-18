@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="mainApp">
     <head>
-
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="styles/style.css"/>
         <script data-require="angular.js@1.3.11" data-semver="1.3.11" src="https://code.angularjs.org/1.3.11/angular.js"></script>
@@ -37,8 +36,7 @@
                             {{ vm.searchWord }}</em>.
                     </p>
                     <p ng-hide="!vm.formInvalid">
-                        Please enter a tag.
-                    </p>
+                        Please enter a tag.</p>
                     <p ng-if="vm.results && !vm.formInvalid ">We found
                         {{ vm.results.length }}
                         results for
