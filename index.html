@@ -1,35 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="mainApp">
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="styles/style.css"/>
-        <script data-require="angular.js@1.3.11" data-semver="1.3.11" src="https://code.angularjs.org/1.3.11/angular.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-messages.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-animate.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
         <meta charset="UTF-8">
         <title>FlickrSearcher</title>
+
+        <style type="text/css">
+            .ng-cloak,
+            .x-ng-cloak,
+            [data-ng-cloak],
+            [ng-cloak],
+            [ng\:cloak],
+            [x-ng-cloak] {
+                display: none !important;
+            }
+
+        </style>
+
     </head>
 
-    <body ng-controller="RootCtrl as vm">
+    <body ng-controller="RootCtrl as vm" ng-cloak>
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2">
 
-
-								<div class="header">
-                    <h1>Flickr Searcher</h1>
+                <div class="header">
+                    <h1>flickr Searcher</h1>
+                    <p>
+                        Search for the top 100 images on Flickr
+                    </p>
                 </div>
 
-
-								<form class="form-inline" name="vm.searchForm" ng-submit="vm.submitForm()" novalidate>
+                <form class="form-inline" name="vm.searchForm" ng-submit="vm.submitForm()" novalidate>
                     <div class="form-group" style="width: 89%">
-                        <input type="text" name="search" class="form-control" placeholder="Enter a tag to search" ng-model="vm.searchText" style="width: 100%" required/>
+                        <input type="text" name="search" class="form-control" placeholder="Type a word or phrase to search for..." ng-model="vm.searchText" style="width: 100%" required/>
                     </div>
                     <button type="submit" class="btn btn-primary" ng-disabled="searchForm.$invalid">Submit</button>
                 </form>
 
-
-								<div class="msgArea">
+                <div class="msgArea">
                     <p ng-show="vm.searchForm.$submitted && !vm.results && !vm.formInvalid">
                         Searching for photos tagged
                         <em>
@@ -44,12 +57,16 @@
                             {{ vm.searchWord }}</em>.</p>
                 </div>
 
-
-								<div class="resultsArea" ng-repeat="result in vm.results">
+                <div class="resultsArea" ng-repeat="result in vm.results">
                     <img class="image" ng-src="{{
                     	vm.trustSrc('https://farm' + result.farm+ '.staticflickr.com/' + result.server + '/' + result.id + '_' + result.secret + '_q.jpg')}}"></img>
                 </div>
             </div>
         </div>
+
+        <script data-require="angular.js@1.3.11" data-semver="1.3.11" src="https://code.angularjs.org/1.3.11/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-messages.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-animate.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </body>
 </html>

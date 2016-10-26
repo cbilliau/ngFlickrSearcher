@@ -1,5 +1,9 @@
 body {
     padding-top: 30px;
+    font-family: 'Cabin', sans-serif;
+}
+.header {
+  text-align: left;
 }
 .msgArea {
     padding-top: 1em;
